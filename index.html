@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Clock</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+  <nav>
+   <!-- BONUS: dynamic home link -->
+    <p id="homeLinkContainer" style="display:none;">
+      <a href="https://ya-world-clock.netlify.app/" id="homeLink">← Back to Home</a>
+    </p>
+
+  </nav>
+
+  <h1>World Clock</h1>
+
+  <div class="container">
+
+    <!-- WORLD CLOCK CARDS (3 different time zones) -->
+    <div class="grid">
+      <div class="card">
+        <h2>New York</h2>
+        <p id="newyork" class="time"></p>
+      </div>
+
+      <div class="card">
+        <h2>London</h2>
+        <p id="london" class="time"></p>
+      </div>
+
+      <div class="card">
+        <h2>Tokyo</h2>
+        <p id="tokyo" class="time"></p>
+      </div>
+    </div>
+
+    <!-- SELECT MENU (at least 3 locations) -->
+    <select id="locationSelect">
+      <option value="America/New_York">New York</option>
+      <option value="Europe/London">London</option>
+      <option value="Asia/Tokyo">Tokyo</option>
+      <option value="Australia/Sydney">Sydney</option>
+      <option value="Europe/Paris">Paris</option>
+      <option value="America/Los_Angeles">Los Angeles</option>
+    </select>
+
+    <!-- TIME DISPLAY -->
+    <div id="timeDisplay">
+      <p>
+        Your Current Location Time:
+        <span id="localTime"></span>
+      </p>
+
+      <p>
+        Selected Location Time:
+        <span id="selectedTime"></span>
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    This project was coded by
+    <a href="https://github.com/yvonnesarah" target="_blank">Yvonne Adedeji</a>
+    and is open-sourced on
+    <a href="https://github.com/yvonnesarah/world-clock" target="_blank">GitHub</a>
+    and hosted on
+    <a href="https://ya-world-clock.netlify.app/" target="_blank">Netlify</a>.
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
