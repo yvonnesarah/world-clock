@@ -1,0 +1,142 @@
+/* GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+/* NAV */
+nav {
+  width: 100%;
+  background: #111827;
+  padding: 15px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: none;
+}
+
+/* TITLE */
+h1 {
+  margin: 20px 0;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* CONTAINER */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* GRID FOR CLOCK CARDS */
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* CARD */
+.card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+/* TIME TEXT */
+.time {
+  font-size: 26px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* SELECT MENU */
+select {
+  padding: 12px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+}
+
+/* TIME DISPLAY SECTION */
+#timeDisplay {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+#timeDisplay p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+#localTime,
+#selectedTime {
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  max-width: 800px;
+}
+
+footer a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: none;
+}
