@@ -9,7 +9,6 @@
 
 <body>
 
-  <!-- NAV -->
   <nav>
     <p id="homeLinkContainer" style="display:none;">
       <a href="https://ya-world-clock.netlify.app/" id="homeLink">← Back to Home</a>
@@ -30,20 +29,23 @@
       <div class="card">
         <h2>New York</h2>
         <p id="newyork" class="time"></p>
+        <span class="daynight"></span>
       </div>
 
       <div class="card">
         <h2>London</h2>
         <p id="london" class="time"></p>
+        <span class="daynight"></span>
       </div>
 
       <div class="card">
         <h2>Tokyo</h2>
         <p id="tokyo" class="time"></p>
+        <span class="daynight"></span>
       </div>
     </div>
 
-    <!-- SELECT MENU -->
+    <!-- ONLY ONE DROPDOWN -->
     <select id="locationSelect">
       <option value="America/New_York">New York</option>
       <option value="Europe/London">London</option>
@@ -58,6 +60,8 @@
       <p>Local Time: <span id="localTime"></span></p>
       <p>Selected City: <span id="selectedCity"></span></p>
       <p>Selected Time: <span id="selectedTime"></span></p>
+      <p id="timeDiff"></p>
+      <p class="updated">Last updated: <span id="lastUpdated"></span></p>
     </div>
 
   </div>
