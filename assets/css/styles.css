@@ -19,7 +19,6 @@ body {
 /* NAV */
 nav {
   width: 100%;
-  background: #111827;
   padding: 15px 0;
   text-align: center;
   position: sticky;
@@ -77,13 +76,15 @@ h1 {
 }
 
 .card h2 {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 /* TIME TEXT */
 .time {
-  font-size: 26px;
-  margin-top: 10px;
+  font-size: 18px;
+  margin-top: 8px;
   font-weight: bold;
 }
 
@@ -139,4 +140,153 @@ footer a {
 
 footer a:hover {
   text-decoration: none;
+}
+
+/* HEADER CONTROLS (Theme + Format Buttons) */
+button {
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  margin: 5px;
+}
+
+button:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}
+
+/* Place buttons neatly under nav/title area */
+body > button {
+  position: relative;
+  z-index: 10;
+}
+
+/* Optional: group nav + buttons better */
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Improve spacing around heading */
+h1 {
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* OPTIONAL: make nav link feel like a pill button */
+nav a {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
+}
+
+nav a:hover {
+  background: #1e293b;
+}
+
+/* OPTIONAL: better layout spacing for top controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+/* 🌞 LIGHT THEME */
+body.light {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* NAV */
+body.light nav {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* NAV LINKS */
+body.light nav a {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+body.light nav a:hover {
+  background: #e2e8f0;
+}
+
+/* TITLE (optional but improves contrast feel) */
+body.light h1 {
+  color: #0f172a;
+}
+
+/* CARDS */
+body.light .card {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+/* SELECT */
+body.light select {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+body.light select:hover {
+  border-color: #cbd5e1;
+}
+
+/* TIME DISPLAY */
+body.light #timeDisplay {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+/* FOOTER */
+body.light footer {
+  color: #64748b;
+}
+
+/* FOOTER LINKS */
+body.light footer a {
+  color: #2563eb;
+}
+
+/* BUTTONS (IMPROVED CONTRAST + SOFT UI STYLE) */
+body.light button {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+body.light button:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+/* ACTIVE/FOCUS FEEL (optional but nice UX) */
+body.light button:active {
+  transform: scale(0.97);
 }
