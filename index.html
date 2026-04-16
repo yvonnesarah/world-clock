@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>World Clock</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 
 <body>
+
+  <!-- NAV -->
   <nav>
-   <!-- BONUS: dynamic home link -->
-    <p id="homeLinkContainer" style="display:none;">
+    <p id="homeLinkContainer">
       <a href="https://ya-world-clock.netlify.app/" id="homeLink">← Back to Home</a>
     </p>
-
   </nav>
+
+<div class="controls">
+  <button id="themeToggle">🌓 Theme</button>
+  <button id="formatToggle">🕓 12/24h</button>
+</div>
 
   <h1>World Clock</h1>
 
   <div class="container">
 
-    <!-- WORLD CLOCK CARDS (3 different time zones) -->
+    <!-- WORLD CLOCK CARDS -->
     <div class="grid">
       <div class="card">
         <h2>New York</h2>
@@ -38,7 +43,7 @@
       </div>
     </div>
 
-    <!-- SELECT MENU (at least 3 locations) -->
+    <!-- SELECT MENU -->
     <select id="locationSelect">
       <option value="America/New_York">New York</option>
       <option value="Europe/London">London</option>
@@ -50,15 +55,8 @@
 
     <!-- TIME DISPLAY -->
     <div id="timeDisplay">
-      <p>
-        Your Current Location Time:
-        <span id="localTime"></span>
-      </p>
-
-      <p>
-        Selected Location Time:
-        <span id="selectedTime"></span>
-      </p>
+      <p>Local Time: <span id="localTime"></span></p>
+      <p>Selected Time: <span id="selectedTime"></span></p>
     </div>
 
   </div>
