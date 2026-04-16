@@ -290,3 +290,23 @@ body.light button:hover {
 body.light button:active {
   transform: scale(0.97);
 }
+
+.diff-controls {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+#compareSelect {
+  margin-top: 10px;
+}
+
+.daynight {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
