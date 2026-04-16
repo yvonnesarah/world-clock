@@ -27,22 +27,20 @@ function updateTime() {
   const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
   document.getElementById("localTime").textContent = getTime(localZone);
 
-  const selectedZone = document.getElementById("locationSelect").value;
-  document.getElementById("selectedTime").textContent = getTime(selectedZone);
-}
+  const select = document.getElementById("locationSelect");
+  const selectedZone = select.value;
 
-// HIGHLIGHT CITY
-function highlight(zone) {
-  cities.forEach(city => {
-    const card = document.getElementById(city.id).parentElement;
-    card.style.border = city.zone === zone ? "2px solid #38bdf8" : "none";
-  });
+  // Selected time
+  document.getElementById("selectedTime").textContent = getTime(selectedZone);
+
+  // ✅ FIX: Selected city name
+  document.getElementById("selectedCity").textContent =
+    select.options[select.selectedIndex].text;
 }
 
 // SELECT CHANGE
 document.getElementById("locationSelect").addEventListener("change", (e) => {
   document.getElementById("homeLinkContainer").style.display = "block";
-  highlight(e.target.value);
   updateTime();
 });
 
@@ -68,10 +66,12 @@ function autoSelect() {
   for (let option of select.options) {
     if (option.value === userZone) {
       option.selected = true;
-      highlight(userZone);
       break;
     }
   }
+
+  // ✅ ensure UI updates after selection
+  updateTime();
 }
 
 // INIT
