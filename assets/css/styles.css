@@ -290,6 +290,10 @@ body.light button:active {
   transform: scale(0.97);
 }
 
+body.light .weather-icon img {
+  filter: drop-shadow(0 6px 10px rgba(15, 23, 42, 0.15));
+}
+
 .diff-controls {
   margin-top: 10px;
   width: 100%;
@@ -351,4 +355,52 @@ body.light button:active {
 .event-time {
   font-weight: bold;
   color: #38bdf8;
+}
+
+.weather-block {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 🌤 Weather Icon */
+.weather-icon {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Hover effect for visual polish */
+.weather-icon img:hover {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.35));
+}
+
+.skyline {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.skyline:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.hidden {
+  display: none;
 }
