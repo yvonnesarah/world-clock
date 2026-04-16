@@ -27,18 +27,21 @@
     <!-- WORLD CLOCK CARDS -->
     <div class="grid">
       <div class="card">
+        <img class="skyline" id="newyork-img" alt="New York skyline">
         <h2>New York</h2>
         <p id="newyork" class="time"></p>
         <span class="daynight"></span>
       </div>
 
       <div class="card">
+         <img class="skyline" id="london-img" alt="London skyline">
         <h2>London</h2>
         <p id="london" class="time"></p>
         <span class="daynight"></span>
       </div>
 
       <div class="card">
+         <img class="skyline" id="tokyo-img" alt="Tokyo skyline">
         <h2>Tokyo</h2>
         <p id="tokyo" class="time"></p>
         <span class="daynight"></span>
@@ -56,11 +59,20 @@
     </select>
 
     <!-- TIME DISPLAY -->
-    <div id="timeDisplay">
+    <div id="timeDisplay" class="hidden">
       <p>Local Time: <span id="localTime"></span></p>
       <p>Selected City: <span id="selectedCity"></span></p>
       <p>Selected Time: <span id="selectedTime"></span></p>
       <p id="timeDiff"></p>
+       
+      <br>
+      <div class="weather-block">
+        <h3>Weather</h3>
+  <p id="weather"></p>
+  <p id="temperature"></p>
+  <div class="weather-icon" id="weatherIcon"></div>
+</div>
+      
       <p class="updated">Last updated: <span id="lastUpdated"></span></p>
     </div>
 
