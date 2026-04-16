@@ -1,14 +1,14 @@
 const cities = [
-  { id: "newyork", zone: "America/New_York" },
-  { id: "london", zone: "Europe/London" },
-  { id: "tokyo", zone: "Asia/Tokyo" }
+  { id: "newyork", zone: "America/New_York", flag: "🇺🇸" },
+  { id: "london", zone: "Europe/London", flag: "🇬🇧" },
+  { id: "tokyo", zone: "Asia/Tokyo", flag: "🇯🇵" }
 ];
 
 // STATE
 let is24Hour = localStorage.getItem("is24Hour") === "true";
 let theme = localStorage.getItem("theme") || "dark";
 
-// FORMAT TIME
+// TIME FORMAT
 function getTime(zone) {
   return new Date().toLocaleString("en-US", {
     timeZone: zone,
@@ -18,28 +18,84 @@ function getTime(zone) {
   });
 }
 
+// GET HOUR
+function getHour(zone) {
+  return Number(
+    new Date().toLocaleString("en-US", {
+      timeZone: zone,
+      hour: "2-digit",
+      hour12: false
+    })
+  );
+}
+
+// 🌙☀️ SUN STATUS
+function getSunStatus(zone) {
+  const hour = getHour(zone);
+
+  if (hour >= 5 && hour < 8) return "🌅 Sunrise";
+  if (hour >= 8 && hour < 17) return "☀️ Day";
+  if (hour >= 17 && hour < 20) return "🌇 Sunset";
+  return "🌙 Night";
+}
+
+// OFFSET HOURS
+function getOffsetHours(zone) {
+  const now = new Date();
+
+  const utc = new Date(now.toLocaleString("en-US", { timeZone: "UTC" }));
+  const local = new Date(now.toLocaleString("en-US", { timeZone: zone }));
+
+  return (local - utc) / (1000 * 60 * 60);
+}
+
 // UPDATE CLOCKS
 function updateTime() {
   cities.forEach(city => {
-    document.getElementById(city.id).textContent = getTime(city.zone);
+    const timeEl = document.getElementById(city.id);
+    const card = timeEl.parentElement;
+    const dayNightEl = card.querySelector(".daynight");
+
+    timeEl.textContent = `${city.flag} ${getTime(city.zone)}`;
+    dayNightEl.textContent = getSunStatus(city.zone);
   });
 
-  const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  document.getElementById("localTime").textContent = getTime(localZone);
+  const localZone =
+    Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  document.getElementById("localTime").textContent =
+    getTime(localZone);
 
   const select = document.getElementById("locationSelect");
   const selectedZone = select.value;
+  const selectedCity = select.options[select.selectedIndex].text;
 
-  // Selected time
-  document.getElementById("selectedTime").textContent = getTime(selectedZone);
+  document.getElementById("selectedTime").textContent =
+    getTime(selectedZone);
 
-  // ✅ FIX: Selected city name
   document.getElementById("selectedCity").textContent =
-    select.options[select.selectedIndex].text;
+    selectedCity;
+
+  // ⏱️ TIME DIFFERENCE (LOCAL vs SELECTED)
+  const diff = getOffsetHours(selectedZone) - getOffsetHours(localZone);
+
+  if (diff === 0) {
+    document.getElementById("timeDiff").textContent =
+      `${selectedCity} is in the same time zone as your local time`;
+  } else {
+    document.getElementById("timeDiff").textContent =
+      `${selectedCity} is ${Math.abs(diff)} hour(s) ${
+        diff > 0 ? "ahead of" : "behind"
+      } your local time`;
+  }
+
+  document.getElementById("lastUpdated").textContent =
+    new Date().toLocaleTimeString();
 }
 
 // SELECT CHANGE
 document.getElementById("locationSelect").addEventListener("change", (e) => {
+  localStorage.setItem("selectedCity", e.target.value);
   document.getElementById("homeLinkContainer").style.display = "block";
   updateTime();
 });
@@ -58,9 +114,13 @@ document.getElementById("formatToggle").addEventListener("click", () => {
   updateTime();
 });
 
-// AUTO USER TIMEZONE
+// AUTO SELECT
 function autoSelect() {
-  const userZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const saved = localStorage.getItem("selectedCity");
+
+  const userZone =
+    saved || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
   const select = document.getElementById("locationSelect");
 
   for (let option of select.options) {
@@ -70,7 +130,6 @@ function autoSelect() {
     }
   }
 
-  // ✅ ensure UI updates after selection
   updateTime();
 }
 
