@@ -21,7 +21,6 @@ nav {
   width: 100%;
   padding: 15px 0;
   text-align: center;
-  position: sticky;
   top: 0;
 }
 
@@ -309,4 +308,47 @@ body.light button:active {
   font-size: 0.95rem;
   font-weight: 500;
   opacity: 0.9;
+}
+
+/* EVENT PANEL (MATCHES CARD STYLE) */
+.event-card {
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+/* Title spacing */
+.event-card h2 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+/* Event list layout */
+.event-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Each event row */
+.event {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0f172a;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  font-size: 0.95rem;
+}
+
+/* Event name */
+.event-name {
+  font-weight: 500;
+}
+
+/* Countdown text */
+.event-time {
+  font-weight: bold;
+  color: #38bdf8;
 }
