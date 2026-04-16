@@ -1,3 +1,4 @@
+// CITIES
 const cities = [
   { id: "newyork", zone: "America/New_York", flag: "🇺🇸" },
   { id: "london", zone: "Europe/London", flag: "🇬🇧" },
@@ -7,6 +8,154 @@ const cities = [
 // STATE
 let is24Hour = localStorage.getItem("is24Hour") === "true";
 let theme = localStorage.getItem("theme") || "dark";
+
+// 🌍 GLOBAL + CITY EVENTS
+const worldEvents = {
+  global: [
+    {
+      name: "🎆 New Year",
+      date: (zone) => {
+        const now = getZonedDate(zone);
+        return new Date(`${now.getFullYear() + 1}-01-01T00:00:00`);
+      }
+    },
+    {
+      name: "🎄 Christmas",
+      date: (zone) => {
+        const now = getZonedDate(zone);
+        return new Date(`${now.getFullYear()}-12-25T00:00:00`);
+      }
+    },
+    {
+      name: "🌍 Olympics 2028",
+      date: () => new Date("2028-07-14T00:00:00")
+    },
+    {
+      name: "⚽ World Cup 2026",
+      date: () => new Date("2026-06-11T00:00:00")
+    }
+  ],
+
+  // 🇬🇧 LONDON (4)
+  "Europe/London": [
+    {
+      name: "👑 Trooping the Colour",
+      date: () => new Date("2026-06-13T10:00:00")
+    },
+    {
+      name: "🎾 Wimbledon Finals",
+      date: () => new Date("2026-07-12T14:00:00")
+    },
+    {
+      name: "🎡 Notting Hill Carnival",
+      date: () => new Date("2026-08-30T10:00:00")
+    },
+    {
+      name: "🎆 London NYE Fireworks",
+      date: () => new Date("2026-12-31T23:59:59")
+    }
+  ],
+
+  // 🇺🇸 NEW YORK (4)
+  "America/New_York": [
+    {
+      name: "🎆 Independence Day",
+      date: () => new Date("2026-07-04T00:00:00")
+    },
+    {
+      name: "🎈 Macy’s Thanksgiving Parade",
+      date: () => new Date("2026-11-26T09:00:00")
+    },
+    {
+      name: "🦃 Thanksgiving",
+      date: () => new Date("2026-11-26T00:00:00")
+    },
+    {
+      name: "🎉 Times Square NYE",
+      date: () => new Date("2026-12-31T23:59:59")
+    }
+  ],
+
+  // 🇯🇵 TOKYO (4)
+  "Asia/Tokyo": [
+    {
+      name: "🌸 Cherry Blossom Peak",
+      date: () => new Date("2026-03-27T00:00:00")
+    },
+    {
+      name: "🎌 Golden Week",
+      date: () => new Date("2026-05-03T00:00:00")
+    },
+    {
+      name: "🎆 Sumida River Fireworks",
+      date: () => new Date("2026-07-25T19:00:00")
+    },
+    {
+      name: "🎎 Culture Day",
+      date: () => new Date("2026-11-03T00:00:00")
+    }
+  ],
+
+  // 🇫🇷 PARIS (4)
+  "Europe/Paris": [
+    {
+      name: "🎆 Bastille Day",
+      date: () => new Date("2026-07-14T00:00:00")
+    },
+    {
+      name: "👗 Paris Fashion Week",
+      date: () => new Date("2026-09-28T10:00:00")
+    },
+    {
+      name: "🎨 Nuit Blanche",
+      date: () => new Date("2026-10-03T19:00:00")
+    },
+    {
+      name: "🎄 Christmas Markets",
+      date: () => new Date("2026-12-10T10:00:00")
+    }
+  ],
+
+  // 🇦🇺 SYDNEY (4)
+  "Australia/Sydney": [
+    {
+      name: "🎆 Sydney NYE Fireworks",
+      date: () => new Date("2026-12-31T21:00:00")
+    },
+    {
+      name: "🇦🇺 Australia Day",
+      date: () => new Date("2027-01-26T00:00:00")
+    },
+    {
+      name: "🎭 Sydney Festival",
+      date: () => new Date("2027-01-10T10:00:00")
+    },
+    {
+      name: "🏄 Bondi Beach Festival",
+      date: () => new Date("2026-02-15T10:00:00")
+    }
+  ],
+
+  // 🇺🇸 LOS ANGELES (4)
+  "America/Los_Angeles": [
+    {
+      name: "🎬 Oscars",
+      date: () => new Date("2026-03-15T17:00:00")
+    },
+    {
+      name: "🎶 Coachella Festival",
+      date: () => new Date("2026-04-10T12:00:00")
+    },
+    {
+      name: "🎃 Halloween",
+      date: () => new Date("2026-10-31T00:00:00")
+    },
+    {
+      name: "🎥 LA Film Festival",
+      date: () => new Date("2026-06-18T18:00:00")
+    }
+  ]
+};
 
 // TIME FORMAT
 function getTime(zone) {
@@ -49,6 +198,65 @@ function getOffsetHours(zone) {
   return (local - utc) / (1000 * 60 * 60);
 }
 
+// ZONED DATE
+function getZonedDate(zone) {
+  return new Date(
+    new Date().toLocaleString("en-US", { timeZone: zone })
+  );
+}
+
+// FORMAT COUNTDOWN
+function formatCountdown(ms) {
+  if (ms <= 0) return "🎉 Happening now!";
+
+  const totalSeconds = Math.floor(ms / 1000);
+
+  const days = Math.floor(totalSeconds / (3600 * 24));
+  const hours = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
+// 🌍 UPDATE EVENTS PANEL
+function updateEvents(zone) {
+  const panel = document.getElementById("eventPanel");
+  const now = getZonedDate(zone);
+
+  const events = [
+    ...(worldEvents.global || []),
+    ...(worldEvents[zone] || [])
+  ];
+
+  if (events.length === 0) {
+    panel.innerHTML = "<p>No events available</p>";
+    return;
+  }
+
+  // SORT by soonest
+  events.sort((a, b) => {
+    const dateA = typeof a.date === "function" ? a.date(zone) : new Date(a.date);
+    const dateB = typeof b.date === "function" ? b.date(zone) : new Date(b.date);
+    return dateA - dateB;
+  });
+
+  let html = `<p><strong>🌍 World Events</strong></p>`;
+
+  events.forEach(event => {
+    const eventDate =
+      typeof event.date === "function"
+        ? event.date(zone)
+        : new Date(event.date);
+
+    const diff = eventDate - now;
+
+    html += `<p>${event.name}: ${formatCountdown(diff)}</p>`;
+  });
+
+  panel.innerHTML = html;
+}
+
 // UPDATE CLOCKS
 function updateTime() {
   cities.forEach(city => {
@@ -76,21 +284,21 @@ function updateTime() {
   document.getElementById("selectedCity").textContent =
     selectedCity;
 
-  // ⏱️ TIME DIFFERENCE (LOCAL vs SELECTED)
+  // TIME DIFFERENCE
   const diff = getOffsetHours(selectedZone) - getOffsetHours(localZone);
 
-  if (diff === 0) {
-    document.getElementById("timeDiff").textContent =
-      `${selectedCity} is in the same time zone as your local time`;
-  } else {
-    document.getElementById("timeDiff").textContent =
-      `${selectedCity} is ${Math.abs(diff)} hour(s) ${
-        diff > 0 ? "ahead of" : "behind"
-      } your local time`;
-  }
+  document.getElementById("timeDiff").textContent =
+    diff === 0
+      ? `${selectedCity} is in the same time zone as your local time`
+      : `${selectedCity} is ${Math.abs(diff)} hour(s) ${
+          diff > 0 ? "ahead of" : "behind"
+        } your local time`;
 
   document.getElementById("lastUpdated").textContent =
     new Date().toLocaleTimeString();
+
+  // 🔥 NEW: update events
+  updateEvents(selectedZone);
 }
 
 // SELECT CHANGE
@@ -117,7 +325,6 @@ document.getElementById("formatToggle").addEventListener("click", () => {
 // AUTO SELECT
 function autoSelect() {
   const saved = localStorage.getItem("selectedCity");
-
   const userZone =
     saved || Intl.DateTimeFormat().resolvedOptions().timeZone;
 
