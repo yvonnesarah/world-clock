@@ -72,40 +72,40 @@ World Clock - Dark Theme
 To expand the global awareness and interactivity of the World Clock, the following features are planned:
 
 🌆 City Insights
-* 🌍 Rotating city facts
-* 🧠 Interactive city quiz/trivia system
-* 🌅 Day/Night indicator (Sunrise, Day, Sunset, Night)
+* 🌍 Rotating city facts ✅
+* 🧠 Interactive city quiz/trivia system ✅
+* 🌅 Day/Night indicator (Sunrise, Day, Sunset, Night) ✅
 
 🌍 World Events
 
 ⏳ Live countdowns for global events:
-* New Year
-* Christmas
-* Olympics
-* World Cup
-* 📍 City-specific event tracking (e.g., Wimbledon, Cherry Blossom season)
+* New Year ✅
+* Christmas ✅
+* Olympics ✅
+* World Cup ✅
+* 📍 City-specific event tracking (e.g., Wimbledon, Cherry Blossom season) ✅
 
 ## 🚀 Upcoming Features
 These upcoming features focus on improving core functionality and enhancing the overall user experience:
 
 🕒 Core Functionality
-* Shows live time for major cities (New York, London, Tokyo, Paris, Sydney, Los Angeles)
-* Automatically updates every second
-* Supports both 12-hour and 24-hour formats
+* Shows live time for major cities (New York, London, Tokyo, Paris, Sydney, Los Angeles) ✅
+* Automatically updates every second ✅
+* Supports both 12-hour and 24-hour formats ✅
 
 🎨 User Experience
-* 🌗 Light/Dark mode toggle
-* 🔗 Dynamic “Back to Home” navigation
+* 🌗 Light/Dark mode toggle ✅
+* 🔗 Dynamic “Back to Home” navigation ✅
 
 ## 🧠 Advanced Features (Professional Level)
 These advanced features aim to bring professional-grade tools and deeper functionality to the World Clock:
 
 ✈️ Flight Planner
-* Calculate departure and arrival times across time zones
-* Auto-estimated flight duration
-* Manual arrival override option
-* 🌍 Time difference calculation
-* 🧳 Jet lag estimation
+* Calculate departure and arrival times across time zones ✅
+* Auto-estimated flight duration ✅
+* Manual arrival override option ✅
+* 🌍 Time difference calculation ✅
+* 🧳 Jet lag estimation ✅
 
 ## 👥 Credit
 Designed and developed by Yvonne Adedeji.
