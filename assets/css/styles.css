@@ -1,10 +1,15 @@
-/* GLOBAL */
+/* =========================
+   GLOBAL RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* =========================
+   BASE STYLES
+========================= */
 body {
   font-family: Arial, sans-serif;
   background: #0f172a;
@@ -16,7 +21,9 @@ body {
   min-height: 100vh;
 }
 
-/* NAV */
+/* =========================
+   NAVIGATION BAR
+========================= */
 nav {
   width: 100%;
   padding: 15px 0;
@@ -34,14 +41,18 @@ nav a:hover {
   text-decoration: none;
 }
 
-/* TITLE */
+/* =========================
+   PAGE TITLE
+========================= */
 h1 {
   margin: 20px 0;
   font-size: 2rem;
   letter-spacing: 1px;
 }
 
-/* CONTAINER */
+/* =========================
+   MAIN CONTAINER
+========================= */
 .container {
   width: 100%;
   max-width: 1000px;
@@ -50,8 +61,9 @@ h1 {
   align-items: center;
   gap: 25px;
 }
-
-/* GRID FOR CLOCK CARDS */
+/* =========================
+   GRID / CARD LAYOUT
+========================= */
 .grid {
   display: flex;
   gap: 20px;
@@ -59,7 +71,8 @@ h1 {
   justify-content: center;
 }
 
-/* CARD */
+
+/* Individual card */
 .card {
   background: #1e293b;
   padding: 20px;
@@ -80,14 +93,17 @@ h1 {
   font-weight: 600;
 }
 
-/* TIME TEXT */
+/* =========================
+   TIME DISPLAY
+========================= */
 .time {
   font-size: 18px;
   margin-top: 8px;
   font-weight: bold;
 }
-
-/* SELECT MENU */
+/* =========================
+   FORM ELEMENTS
+========================= */
 select {
   padding: 12px;
   border-radius: 8px;
@@ -100,8 +116,9 @@ select {
   color: white;
   cursor: pointer;
 }
-
-/* TIME DISPLAY SECTION */
+/* =========================
+   TIME DISPLAY BOX
+========================= */
 #timeDisplay {
   background: #1e293b;
   padding: 20px;
@@ -122,8 +139,9 @@ select {
   font-weight: bold;
   color: #38bdf8;
 }
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 footer {
   margin-top: 40px;
   text-align: center;
@@ -141,7 +159,9 @@ footer a:hover {
   text-decoration: none;
 }
 
-/* HEADER CONTROLS (Theme + Format Buttons) */
+/* =========================
+   BUTTONS
+========================= */
 button {
   background: #1e293b;
   color: white;
@@ -190,7 +210,9 @@ nav a:hover {
   background: #1e293b;
 }
 
-/* OPTIONAL: better layout spacing for top controls */
+/* =========================
+   CONTROL LAYOUT
+========================= */
 .controls {
   display: flex;
   justify-content: center;
@@ -212,8 +234,7 @@ body.light {
   background: #f8fafc;
   color: #0f172a;
 }
-
-/* NAV */
+/* NAV LIGHT */
 body.light nav {
   background: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -235,7 +256,7 @@ body.light h1 {
   color: #0f172a;
 }
 
-/* CARDS */
+/* CARD LIGHT */
 body.light .card {
   background: #ffffff;
   color: #0f172a;
@@ -243,7 +264,7 @@ body.light .card {
   border: 1px solid #e2e8f0;
 }
 
-/* SELECT */
+/* FORM LIGHT */
 body.light select {
   background: #ffffff;
   color: #0f172a;
@@ -254,7 +275,8 @@ body.light select:hover {
   border-color: #cbd5e1;
 }
 
-/* TIME DISPLAY */
+
+/* TIME DISPLAY LIGHT */
 body.light #timeDisplay {
   background: #ffffff;
   color: #0f172a;
@@ -262,7 +284,7 @@ body.light #timeDisplay {
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
 }
 
-/* FOOTER */
+/* FOOTER LIGHT */
 body.light footer {
   color: #64748b;
 }
@@ -272,7 +294,7 @@ body.light footer a {
   color: #2563eb;
 }
 
-/* BUTTONS (IMPROVED CONTRAST + SOFT UI STYLE) */
+/* BUTTON LIGHT */
 body.light button {
   background: #ffffff;
   color: #0f172a;
@@ -290,10 +312,6 @@ body.light button:active {
   transform: scale(0.97);
 }
 
-body.light .weather-icon img {
-  filter: drop-shadow(0 6px 10px rgba(15, 23, 42, 0.15));
-}
-
 .diff-controls {
   margin-top: 10px;
   width: 100%;
@@ -306,6 +324,9 @@ body.light .weather-icon img {
   margin-top: 10px;
 }
 
+/* =========================
+   DAY/NIGHT LABEL
+========================= */
 .daynight {
   display: inline-block;
   margin-top: 8px;
@@ -314,7 +335,9 @@ body.light .weather-icon img {
   opacity: 0.9;
 }
 
-/* EVENT PANEL (MATCHES CARD STYLE) */
+/* =========================
+   EVENT PANEL
+========================= */
 .event-card {
   width: 100%;
   max-width: 500px;
@@ -357,36 +380,9 @@ body.light .weather-icon img {
   color: #38bdf8;
 }
 
-.weather-block {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-/* 🌤 Weather Icon */
-.weather-icon {
-  margin-top: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.weather-icon img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-/* Hover effect for visual polish */
-.weather-icon img:hover {
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.35));
-}
-
+/* =========================
+   SKYLINE IMAGE
+========================= */
 .skyline {
   width: 100%;
   height: 120px;
@@ -401,6 +397,100 @@ body.light .weather-icon img {
   filter: brightness(1.1);
 }
 
+/* =========================
+   UTILITY CLASSES
+========================= */
 .hidden {
   display: none;
 }
+
+/* =========================
+   FLIGHT BLOCK
+========================= */
+.flight-block {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: center;
+}
+
+.flight-block select,
+.flight-block input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: white;
+}
+
+.flight-block button {
+  margin-top: 10px;
+}
+
+.flight-result {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: #38bdf8;
+}
+
+.flight-block input[type="datetime-local"] {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #1e293b;
+  color: white;
+}
+
+.facts-block {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+body.light .facts-block {
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.facts-block button {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 200px;
+}
+
+/* =========================
+   FACTS + QUIZ BLOCKS
+========================= */
+.facts-block,
+.quiz-block {
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  text-align: center;
+}
+
+#quizOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+#quizOptions button {
+  width: 100%;
+}
+
+body.light .facts-block,
+body.light .quiz-block {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
