@@ -77,6 +77,7 @@ To expand the global awareness and interactivity of the World Clock, the followi
 * 🌅 Day/Night indicator (Sunrise, Day, Sunset, Night)
 
 🌍 World Events
+
 ⏳ Live countdowns for global events:
 * New Year
 * Christmas
