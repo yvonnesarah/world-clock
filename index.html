@@ -61,19 +61,29 @@
       <button id="nextFactBtn">🔁 Next Fact</button>
       </div>
 
-      <!-- ===== QUIZ SECTION ===== -->
-      <div class="quiz-block hidden">
+        <!-- ===== QUIZ SECTION ===== -->
+<div class="quiz-block hidden">
   <h3>🧠 City Trivia</h3>
 
-  <p id="quizQuestion">Click start to begin</p>
+  <div class="quiz-content">
+    <!-- Progress -->
+    <p id="quizProgress"></p>
 
-<!-- Multiple choice options injected via JS -->
-  <div id="quizOptions"></div>
+    <!-- Question -->
+    <p id="quizQuestion">Click start to begin</p>
+
+    <!-- Options -->
+    <div id="quizOptions"></div>
+
+    <!-- Feedback -->
+    <p id="quizFeedback"></p>
+
+    <!-- Score -->
+    <p id="quizScore"></p>
+  </div>
 
   <button id="startQuizBtn">▶ Start Quiz</button>
   <button id="nextQuizBtn" disabled>Next Question</button>
-
-  <p id="quizScore"></p>
 </div>
 
 <!-- ===== FLIGHT PLANNER SECTION ===== -->
@@ -113,6 +123,13 @@
 </div>
 
     </div>
+
+      </div>
+
+      <br>
+
+    
+
 
     <!-- ================= WORLD EVENTS COUNTDOWN ================= -->
 <div id="eventPanel" class="card event-card">
