@@ -613,8 +613,9 @@ let quizIndex = 0;
 let quizScore = 0;
 let currentQuizCity = "";
 
-
+// =====================
 // RESET QUIZ UI
+// =====================
 function resetQuizUI() {
   quizIndex = 0;
   quizScore = 0;
@@ -623,6 +624,9 @@ function resetQuizUI() {
   document.getElementById("quizQuestion").textContent = "Click start to begin";
   document.getElementById("quizOptions").innerHTML = "";
   document.getElementById("quizScore").textContent = "";
+  document.getElementById("quizProgress").textContent = "";
+  document.getElementById("quizFeedback").textContent = "";
+
   document.getElementById("nextQuizBtn").disabled = true;
 }
 
@@ -633,8 +637,10 @@ function startQuiz(cityName) {
   currentQuizCity = cityName;
   quizIndex = 0;
   quizScore = 0;
+  quizActive = true;
 
   document.getElementById("quizScore").textContent = "";
+  document.getElementById("quizFeedback").textContent = "";
   document.getElementById("nextQuizBtn").disabled = true;
 
   loadQuestion();
@@ -649,29 +655,36 @@ function loadQuestion() {
   const questionEl = document.getElementById("quizQuestion");
   const optionsEl = document.getElementById("quizOptions");
   const scoreEl = document.getElementById("quizScore");
+  const progressEl = document.getElementById("quizProgress");
+  const feedbackEl = document.getElementById("quizFeedback");
 
   if (!quiz || quiz.length === 0) {
     questionEl.textContent = "No quiz available for this city.";
     return;
   }
 
-  // FINISH QUIZ
+  // ===== FINISH QUIZ =====
   if (quizIndex >= quiz.length) {
-    questionEl.textContent = `🎉 Quiz finished! Final score: ${quizScore}/${quiz.length}`;
+    questionEl.textContent = "🎉 Quiz finished!";
+    progressEl.textContent = "";
+    feedbackEl.textContent = `Final Score: ${quizScore}/${quiz.length}`;
+    feedbackEl.style.color = "#38bdf8";
+
     optionsEl.innerHTML = "";
     document.getElementById("nextQuizBtn").disabled = true;
 
-    setTimeout(() => {
-      resetQuizUI();
-    }, 3000);
-
+    quizActive = false;
     return;
   }
 
   const current = quiz[quizIndex];
 
+  // ✅ Show question number
+  progressEl.textContent = `Question ${quizIndex + 1} of ${quiz.length}`;
+
   questionEl.textContent = current.q;
   optionsEl.innerHTML = "";
+  feedbackEl.textContent = "";
 
   current.options.forEach(opt => {
     const btn = document.createElement("button");
@@ -682,22 +695,29 @@ function loadQuestion() {
 
       const isCorrect = opt === current.answer;
 
-      // update score
-      if (isCorrect) quizScore++;
+      // ✅ Feedback text
+      if (isCorrect) {
+        quizScore++;
+        feedbackEl.textContent = "✅ Correct!";
+        feedbackEl.style.color = "#22c55e";
+      } else {
+        feedbackEl.textContent = `❌ Incorrect! Correct answer: ${current.answer}`;
+        feedbackEl.style.color = "#ef4444";
+      }
 
-      // disable all buttons + show correct answer in green
+      // Disable all buttons + highlight correct
       Array.from(optionsEl.children).forEach(b => {
         b.disabled = true;
 
         if (b.textContent === current.answer) {
-          b.style.backgroundColor = "#22c55e"; // GREEN
+          b.style.backgroundColor = "#22c55e";
           b.style.color = "white";
         }
       });
 
-      // mark wrong selection in red
+      // Highlight wrong selection
       if (!isCorrect) {
-        btn.style.backgroundColor = "#ef4444"; // RED
+        btn.style.backgroundColor = "#ef4444";
         btn.style.color = "white";
       }
 
@@ -710,6 +730,27 @@ function loadQuestion() {
 
   scoreEl.textContent = `Score: ${quizScore}`;
 }
+
+// =====================
+// BUTTON EVENTS
+// =====================
+document.getElementById("startQuizBtn").addEventListener("click", () => {
+  const select = document.getElementById("locationSelect");
+  const city = select.options[select.selectedIndex]?.text || "";
+
+  resetQuizUI();
+  startQuiz(city);
+});
+
+document.getElementById("nextQuizBtn").addEventListener("click", () => {
+  quizIndex++;
+  loadQuestion();
+
+  document.getElementById("nextQuizBtn").disabled = true;
+
+  // ✅ FIX: scroll back to top so full question shows
+  document.querySelector(".quiz-block").scrollTop = 0;
+});
 
 // =====================
 // MAIN UPDATE
@@ -957,20 +998,6 @@ document.getElementById("nextFactBtn").addEventListener("click", () => {
 
   updateCityFact(selectedCity, true); // move to next fact
 });
-
-document.getElementById("startQuizBtn").addEventListener("click", () => {
-  const select = document.getElementById("locationSelect");
-  const city = select.options[select.selectedIndex]?.text || "";
-  resetQuizUI();
-  startQuiz(city);
-});
-
-document.getElementById("nextQuizBtn").addEventListener("click", () => {
-  quizIndex++;
-  loadQuestion();
-  document.getElementById("nextQuizBtn").disabled = true;
-});
-
 
 // =====================
 // INIT
