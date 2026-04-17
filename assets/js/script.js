@@ -42,28 +42,31 @@ const cities = [
 ];
 
 // =====================
-// UI STATE (DISPLAYED CITIES ON HOME GRID)
+// UI STATE (HOME GRID CITIES)
+// Stores the 3 randomly displayed cities
 // =====================
 let displayedCities = [];
 
 
 // =====================
-// UTILITY: SHUFFLE ARRAY (RANDOMISE CITIES)
+// UTILITY: RANDOMISE ARRAY ORDER
+// Used to pick random cities each refresh
 // =====================
 function shuffleArray(arr) {
   return [...arr].sort(() => Math.random() - 0.5);
 }
 
 // =====================
-// RENDER: RANDOM CITY CARDS (HOME GRID)
+// RENDER: HOME GRID CITY CARDS
+// Dynamically displays 3 random cities
 // =====================
 function renderCities() {
   const grid = document.querySelector(".grid");
 
-  // Pick 3 random cities each refresh
+  // Pick 3 random cities 
   displayedCities = shuffleArray(cities).slice(0, 3);
 
-   // Render cards dynamically
+   // Render cards into DOM
   grid.innerHTML = displayedCities.map(city => `
     <div class="card">
       <img class="skyline" id="${city.id}-img" alt="${city.id} skyline">
@@ -77,6 +80,7 @@ function renderCities() {
 
 // =====================
 // CITY FACTS DATA (FUN FACTS PER CITY)
+// Rotating trivia facts shown in UI
 // =====================
 const cityFacts = {
   "New York": [
@@ -149,6 +153,7 @@ const cityFacts = {
 
 // =====================
 // CITY QUIZ DATA (TRIVIA QUESTIONS)
+// Multi-choice quizzes per city
 // =====================
 const cityQuiz = {
 
@@ -412,13 +417,14 @@ const cityQuiz = {
 };
 
 // =====================
-// GLOBAL UI SETTINGS STATE
+// UI STATE (SETTINGS)
 // =====================
 let is24Hour = localStorage.getItem("is24Hour") === "true";
 let theme = localStorage.getItem("theme") || "dark";
 
 // =====================
-// WORLD EVENTS DATA (GLOBAL + CITY SPECIFIC)
+// WORLD EVENTS SYSTEM
+// Countdown-based global + city events
 // =====================
 const worldEvents = {
   global: [
@@ -473,7 +479,8 @@ const worldEvents = {
 
 
 // =====================
-// UI TOGGLE: SHOW/HIDE CITY FEATURES
+// UI VISIBILITY TOGGLE
+// Shows/hides city-specific UI blocks
 // =====================
 function showCityFeatures(show) {
   document.getElementById("timeDisplay").classList.toggle("hidden", !show);
@@ -481,10 +488,11 @@ function showCityFeatures(show) {
 }
 
 // =====================
-// TIME HELPERS (CORE CLOCK LOGIC)
+// TIME UTILITIES
+// Core timezone & formatting logic
 // =====================
 
-// Format time in a timezone
+// Get formatted time in timezone
 function getTime(zone) {
   return new Date().toLocaleString("en-US", {
     timeZone: zone,
@@ -494,7 +502,7 @@ function getTime(zone) {
   });
 }
 
-// Get hour only (used for day/night logic)
+// Extract hour for day/night logic
 function getHour(zone) {
   return Number(
     new Date().toLocaleString("en-US", {
@@ -505,7 +513,7 @@ function getHour(zone) {
   );
 }
 
-// Determine day/night state
+// Determine sun status
 function getSunStatus(zone) {
   const hour = getHour(zone);
 
@@ -753,7 +761,8 @@ document.getElementById("nextQuizBtn").addEventListener("click", () => {
 });
 
 // =====================
-// MAIN UPDATE
+// MAIN UI UPDATE LOOP
+// Updates clocks, facts, events, UI state
 // =====================
 function updateTime() {
   displayedCities.forEach(city => {
@@ -770,7 +779,7 @@ function updateTime() {
   const localZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
   document.getElementById("localTime").textContent = getTime(localZone);
-
+// Selected city handling
   const select = document.getElementById("locationSelect");
   const selectedZone = select.value;
   const selectedCity = select.options[select.selectedIndex]?.text || "";
@@ -1000,7 +1009,7 @@ document.getElementById("nextFactBtn").addEventListener("click", () => {
 });
 
 // =====================
-// INIT
+// INIT (APP BOOTSTRAP)
 // =====================
 autoSelect();
 document.body.classList.toggle("light", theme === "light");

@@ -4,36 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>World Clock</title>
-   <!-- ================= CSS ================= -->
+  <!-- ================= CSS (External Stylesheet) ================= -->
   <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
-
 <body>
-
-     <!-- ================= NAVIGATION ================= -->
+  <!-- ================= NAVIGATION ================= -->
   <nav>
-    <!-- Hidden home link (shown conditionally via JS) -->
+    <!-- Hidden home link (only shown conditionally via JavaScript) -->
     <p id="homeLinkContainer" style="display:none;">
       <a href="https://ya-world-clock.netlify.app/" id="homeLink">← Back to Home</a>
     </p>
   </nav>
-
-   <!-- ================= TOP CONTROLS ================= -->
+  <!-- ================= TOP CONTROLS ================= -->
   <div class="controls">
+    <!-- Theme toggle (light/dark mode) -->
     <button id="themeToggle">🌓 Theme</button>
+
+    <!-- Time format toggle (12h / 24h) -->
     <button id="formatToggle">🕓 12/24h</button>
   </div>
-
   <!-- ================= PAGE TITLE ================= -->
   <h1>World Clock</h1>
-
-   <!-- ================= MAIN CONTAINER ================= -->
+  <!-- ================= MAIN CONTAINER ================= -->
   <div class="container">
-
-    <!-- ===== WORLD CLOCK GRID (DYNAMIC CARDS) ===== -->
+    <!-- ================= WORLD CLOCK GRID ================= -->
+    <!-- Dynamic clock cards will be injected here via JavaScript -->
     <div class="grid"></div>
-    
-    <!-- ===== TIMEZONE SELECT DROPDOWN ===== -->
+    <!-- ================= TIMEZONE SELECTOR ================= -->
     <select id="locationSelect">
       <option value="America/New_York">New York</option>
       <option value="Europe/London">London</option>
@@ -42,123 +39,101 @@
       <option value="Europe/Paris">Paris</option>
       <option value="America/Los_Angeles">Los Angeles</option>
     </select>
-
-     <!-- ===== TIME DISPLAY SECTION (DETAIL VIEW) ===== -->
+    <!-- ================= TIME DETAIL DISPLAY ================= -->
+    <!-- Shown when a city is selected -->
     <div id="timeDisplay" class="hidden">
-        <!-- Local vs Selected time info -->
+      <!-- Local vs selected timezone information -->
       <p>Local Time: <span id="localTime"></span></p>
       <p>Selected City: <span id="selectedCity"></span></p>
       <p>Selected Time: <span id="selectedTime"></span></p>
       <p id="timeDiff"></p>
       <p class="updated">Last updated: <span id="lastUpdated"></span></p>
-       
-      <br>
 
-       <!-- ===== CITY FACTS SECTION ===== -->
+      <br>
+      <!-- ================= CITY FACTS SECTION ================= -->
       <div class="facts-block">
-      <h3>🌍 City Facts</h3>
-      <p id="cityFact"></p>
-      <button id="nextFactBtn">🔁 Next Fact</button>
+        <h3>🌍 City Facts</h3>
+        <p id="cityFact"></p>
+
+        <!-- Load next random fact -->
+        <button id="nextFactBtn">🔁 Next Fact</button>
       </div>
+      <!-- ================= QUIZ SECTION ================= -->
+      <div class="quiz-block hidden">
+        <h3>🧠 City Trivia</h3>
 
-        <!-- ===== QUIZ SECTION ===== -->
-<div class="quiz-block hidden">
-  <h3>🧠 City Trivia</h3>
+        <div class="quiz-content">
+          <!-- Quiz progress tracker -->
+          <p id="quizProgress"></p>
 
-  <div class="quiz-content">
-    <!-- Progress -->
-    <p id="quizProgress"></p>
+          <!-- Question text -->
+          <p id="quizQuestion">Click start to begin</p>
 
-    <!-- Question -->
-    <p id="quizQuestion">Click start to begin</p>
+          <!-- Answer options (generated dynamically) -->
+          <div id="quizOptions"></div>
 
-    <!-- Options -->
-    <div id="quizOptions"></div>
-
-    <!-- Feedback -->
-    <p id="quizFeedback"></p>
-
-    <!-- Score -->
-    <p id="quizScore"></p>
-  </div>
-
-  <button id="startQuizBtn">▶ Start Quiz</button>
-  <button id="nextQuizBtn" disabled>Next Question</button>
-</div>
-
-<!-- ===== FLIGHT PLANNER SECTION ===== -->
-<div class="flight-block">
-  <h3>✈️ Flight Planner</h3>
-
-  <!-- Origin timezone selector -->
-  <label>From:</label>
-  <select id="fromZone"></select>
-
-   <!-- Destination timezone selector -->
-  <label>To:</label>
-  <select id="toZone"></select>
-
-    <!-- Departure input -->
-  <label>Departure Date & Time:</label>
-  <input type="datetime-local" id="departureTime"/>
-
-   <!-- Flight duration input -->
-  <label>Flight Duration (hours):</label>
-  <input type="number" id="flightHours" min="0" value="7"/>
-
-   <!-- Manual arrival toggle -->
-  <label>
-    <input type="checkbox" id="manualArrivalToggle">
-    Set arrival manually
-  </label>
-
-  <!-- Arrival input (enabled only if manual mode is on) -->
-  <input type="datetime-local" id="arrivalTime" disabled/>
-
-   <!-- Calculate button -->
-  <button id="calcFlight">Calculate</button>
-
-   <!-- Result output -->
-  <div id="flightResult" class="flight-result"></div>
-</div>
-
-    </div>
-
+          <!-- Feedback after answer selection -->
+          <p id="quizFeedback"></p>
+          <!-- Score display -->
+          <p id="quizScore"></p>
+        </div>
+        <!-- Quiz controls -->
+        <button id="startQuizBtn">▶ Start Quiz</button>
+        <button id="nextQuizBtn" disabled>Next Question</button>
       </div>
-
-      <br>
-
-    
-
-
-    <!-- ================= WORLD EVENTS COUNTDOWN ================= -->
-<div id="eventPanel" class="card event-card">
-  <h2>🌍 World Events</h2>
-
-  <div class="event-list">
-    <!-- New Year countdown -->
-    <div class="event">
-      <span class="event-name">New Year</span>
-      <span class="event-time" id="newYearCountdown"></span>
-    </div>
-
-     <!-- Christmas countdown -->
-    <div class="event">
-      <span class="event-name">Christmas</span>
-      <span class="event-time" id="christmasCountdown"></span>
-    </div>
-
-     <!-- Olympics countdown -->
-    <div class="event">
-      <span class="event-name">Olympics</span>
-      <span class="event-time" id="olympicsCountdown"></span>
+      <!-- ================= FLIGHT PLANNER ================= -->
+      <div class="flight-block">
+        <h3>✈️ Flight Planner</h3>
+        <!-- Origin timezone -->
+        <label>From:</label>
+        <select id="fromZone"></select>
+        <!-- Destination timezone -->
+        <label>To:</label>
+        <select id="toZone"></select>
+        <!-- Departure date/time input -->
+        <label>Departure Date & Time:</label>
+        <input type="datetime-local" id="departureTime"/>
+        <!-- Flight duration input -->
+        <label>Flight Duration (hours):</label>
+        <input type="number" id="flightHours" min="0" value="7"/>
+        <!-- Toggle manual arrival input -->
+        <label>
+          <input type="checkbox" id="manualArrivalToggle">
+          Set arrival manually
+        </label>
+        <!-- Arrival time (enabled only in manual mode) -->
+        <input type="datetime-local" id="arrivalTime" disabled/>
+        <!-- Calculate flight times -->
+        <button id="calcFlight">Calculate</button>
+        <!-- Flight result output -->
+        <div id="flightResult" class="flight-result"></div>
+      </div>
     </div>
   </div>
-</div>
 
+  <br>
+  <!-- ================= WORLD EVENTS COUNTDOWN ================= -->
+  <div id="eventPanel" class="card event-card">
+    <h2>🌍 World Events</h2>
+    <div class="event-list">
+      <!-- New Year countdown -->
+      <div class="event">
+        <span class="event-name">New Year</span>
+        <span class="event-time" id="newYearCountdown"></span>
+      </div>
+      <!-- Christmas countdown -->
+      <div class="event">
+        <span class="event-name">Christmas</span>
+        <span class="event-time" id="christmasCountdown"></span>
+      </div>
+      <!-- Olympics countdown -->
+      <div class="event">
+        <span class="event-name">Olympics</span>
+        <span class="event-time" id="olympicsCountdown"></span>
+      </div>
+    </div>
   </div>
-
-   <!-- ================= FOOTER ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer>
     This project was coded by
     <a href="https://github.com/yvonnesarah" target="_blank">Yvonne Adedeji</a>
@@ -167,8 +142,7 @@
     and hosted on
     <a href="https://ya-world-clock.netlify.app/" target="_blank">Netlify</a>.
   </footer>
-
-   <!-- ================= JAVASCRIPT ================= -->
+  <!-- ================= JAVASCRIPT ================= -->
   <script src="assets/js/script.js"></script>
 </body>
 </html>

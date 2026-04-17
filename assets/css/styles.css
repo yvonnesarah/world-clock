@@ -27,6 +27,9 @@ body {
 nav {
   width: 100%;
   padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   top: 0;
 }
@@ -35,19 +38,25 @@ nav a {
   color: #38bdf8;
   text-decoration: none;
   font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: #0f172a;
+  border: 1px solid #334155;
 }
 
 nav a:hover {
   text-decoration: none;
+  background: #1e293b;
 }
 
 /* =========================
    PAGE TITLE
 ========================= */
 h1 {
-  margin: 20px 0;
+  margin: 30px 0 20px;
   font-size: 2rem;
   letter-spacing: 1px;
+  text-align: center;
 }
 
 /* =========================
@@ -61,6 +70,7 @@ h1 {
   align-items: center;
   gap: 25px;
 }
+
 /* =========================
    GRID / CARD LAYOUT
 ========================= */
@@ -71,8 +81,7 @@ h1 {
   justify-content: center;
 }
 
-
-/* Individual card */
+/* Card component */
 .card {
   background: #1e293b;
   padding: 20px;
@@ -101,6 +110,7 @@ h1 {
   margin-top: 8px;
   font-weight: bold;
 }
+
 /* =========================
    FORM ELEMENTS
 ========================= */
@@ -116,6 +126,7 @@ select {
   color: white;
   cursor: pointer;
 }
+
 /* =========================
    TIME DISPLAY BOX
 ========================= */
@@ -139,6 +150,41 @@ select {
   font-weight: bold;
   color: #38bdf8;
 }
+
+/* =========================
+   CONTROLS / BUTTON AREA
+========================= */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  background: #1e293b;
+  color: white;
+  border: 1px solid #334155;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  margin: 5px;
+}
+
+button:hover {
+  background: #334155;
+  transform: translateY(-2px);
+}
+
+body > button {
+  position: relative;
+  z-index: 10;
+}
+
 /* =========================
    FOOTER
 ========================= */
@@ -160,182 +206,6 @@ footer a:hover {
 }
 
 /* =========================
-   BUTTONS
-========================= */
-button {
-  background: #1e293b;
-  color: white;
-  border: 1px solid #334155;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
-  margin: 5px;
-}
-
-button:hover {
-  background: #334155;
-  transform: translateY(-2px);
-}
-
-/* Place buttons neatly under nav/title area */
-body > button {
-  position: relative;
-  z-index: 10;
-}
-
-/* Optional: group nav + buttons better */
-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Improve spacing around heading */
-h1 {
-  margin-top: 30px;
-  text-align: center;
-}
-
-/* OPTIONAL: make nav link feel like a pill button */
-nav a {
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: #0f172a;
-  border: 1px solid #334155;
-}
-
-nav a:hover {
-  background: #1e293b;
-}
-
-/* =========================
-   CONTROL LAYOUT
-========================= */
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 15px 0;
-  flex-wrap: wrap;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
-}
-
-/* 🌞 LIGHT THEME */
-body.light {
-  background: #f8fafc;
-  color: #0f172a;
-}
-/* NAV LIGHT */
-body.light nav {
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-/* NAV LINKS */
-body.light nav a {
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
-}
-
-body.light nav a:hover {
-  background: #e2e8f0;
-}
-
-/* TITLE (optional but improves contrast feel) */
-body.light h1 {
-  color: #0f172a;
-}
-
-/* CARD LIGHT */
-body.light .card {
-  background: #ffffff;
-  color: #0f172a;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-  border: 1px solid #e2e8f0;
-}
-
-/* FORM LIGHT */
-body.light select {
-  background: #ffffff;
-  color: #0f172a;
-  border: 1px solid #e2e8f0;
-}
-
-body.light select:hover {
-  border-color: #cbd5e1;
-}
-
-
-/* TIME DISPLAY LIGHT */
-body.light #timeDisplay {
-  background: #ffffff;
-  color: #0f172a;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-}
-
-/* FOOTER LIGHT */
-body.light footer {
-  color: #64748b;
-}
-
-/* FOOTER LINKS */
-body.light footer a {
-  color: #2563eb;
-}
-
-/* BUTTON LIGHT */
-body.light button {
-  background: #ffffff;
-  color: #0f172a;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
-}
-
-body.light button:hover {
-  background: #f1f5f9;
-  transform: translateY(-2px);
-}
-
-/* ACTIVE/FOCUS FEEL (optional but nice UX) */
-body.light button:active {
-  transform: scale(0.97);
-}
-
-.diff-controls {
-  margin-top: 10px;
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-}
-
-#compareSelect {
-  margin-top: 10px;
-}
-
-/* =========================
-   DAY/NIGHT LABEL
-========================= */
-.daynight {
-  display: inline-block;
-  margin-top: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
-  opacity: 0.9;
-}
-
-/* =========================
    EVENT PANEL
 ========================= */
 .event-card {
@@ -344,20 +214,17 @@ body.light button:active {
   text-align: left;
 }
 
-/* Title spacing */
 .event-card h2 {
   margin-bottom: 15px;
   font-size: 1.1rem;
 }
 
-/* Event list layout */
 .event-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Each event row */
 .event {
   display: flex;
   justify-content: space-between;
@@ -369,12 +236,10 @@ body.light button:active {
   font-size: 0.95rem;
 }
 
-/* Event name */
 .event-name {
   font-weight: 500;
 }
 
-/* Countdown text */
 .event-time {
   font-weight: bold;
   color: #38bdf8;
@@ -398,13 +263,6 @@ body.light button:active {
 }
 
 /* =========================
-   UTILITY CLASSES
-========================= */
-.hidden {
-  display: none;
-}
-
-/* =========================
    FLIGHT BLOCK
 ========================= */
 .flight-block {
@@ -419,24 +277,7 @@ body.light button:active {
 }
 
 .flight-block select,
-.flight-block input {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #1e293b;
-  color: white;
-}
-
-.flight-block button {
-  margin-top: 10px;
-}
-
-.flight-result {
-  margin-top: 10px;
-  font-size: 0.95rem;
-  color: #38bdf8;
-}
-
+.flight-block input,
 .flight-block input[type="datetime-local"] {
   padding: 10px;
   border-radius: 8px;
@@ -445,28 +286,14 @@ body.light button:active {
   color: white;
 }
 
-.facts-block {
-  margin-top: 15px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #334155;
-  text-align: center;
-  font-size: 0.95rem;
-}
-
-body.light .facts-block {
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
-}
-
-.facts-block button {
+.flight-result {
   margin-top: 10px;
-  width: 100%;
-  max-width: 200px;
+  font-size: 0.95rem;
+  color: #38bdf8;
 }
 
 /* =========================
-   FACTS + QUIZ BLOCKS
+   FACTS & QUIZ BLOCKS
 ========================= */
 .facts-block,
 .quiz-block {
@@ -475,6 +302,12 @@ body.light .facts-block {
   border-radius: 12px;
   border: 1px solid #334155;
   text-align: center;
+}
+
+.facts-block button {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 200px;
 }
 
 #quizOptions {
@@ -488,8 +321,93 @@ body.light .facts-block {
   width: 100%;
 }
 
+/* =========================
+   UTILITY CLASSES
+========================= */
+.hidden {
+  display: none;
+}
+
+/* =========================
+   LIGHT THEME
+========================= */
+body.light {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+/* NAV LIGHT */
+body.light nav {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+body.light nav a {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+body.light nav a:hover {
+  background: #e2e8f0;
+}
+
+/* CARDS LIGHT */
+body.light .card,
+body.light #timeDisplay,
 body.light .facts-block,
 body.light .quiz-block {
-  background: #fff;
+  background: #ffffff;
+  color: #0f172a;
   border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+/* FORM LIGHT */
+body.light select {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+/* BUTTON LIGHT */
+body.light button {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+body.light button:hover {
+  background: #f1f5f9;
+}
+
+/* FOOTER LIGHT */
+body.light footer {
+  color: #64748b;
+}
+
+body.light footer a {
+  color: #2563eb;
+}
+
+/* DAY/NIGHT LABEL */
+.daynight {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* DIFFERENCE CONTROLS */
+.diff-controls {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+#compareSelect {
+  margin-top: 10px;
 }
