@@ -4,51 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>World Clock</title>
+   <!-- ================= CSS ================= -->
   <link rel="stylesheet" href="assets/css/styles.css"/>
 </head>
 
 <body>
 
+     <!-- ================= NAVIGATION ================= -->
   <nav>
+    <!-- Hidden home link (shown conditionally via JS) -->
     <p id="homeLinkContainer" style="display:none;">
       <a href="https://ya-world-clock.netlify.app/" id="homeLink">← Back to Home</a>
     </p>
   </nav>
 
+   <!-- ================= TOP CONTROLS ================= -->
   <div class="controls">
     <button id="themeToggle">🌓 Theme</button>
     <button id="formatToggle">🕓 12/24h</button>
   </div>
 
+  <!-- ================= PAGE TITLE ================= -->
   <h1>World Clock</h1>
 
+   <!-- ================= MAIN CONTAINER ================= -->
   <div class="container">
 
-    <!-- WORLD CLOCK CARDS -->
-    <div class="grid">
-      <div class="card">
-        <img class="skyline" id="newyork-img" alt="New York skyline">
-        <h2>New York</h2>
-        <p id="newyork" class="time"></p>
-        <span class="daynight"></span>
-      </div>
-
-      <div class="card">
-         <img class="skyline" id="london-img" alt="London skyline">
-        <h2>London</h2>
-        <p id="london" class="time"></p>
-        <span class="daynight"></span>
-      </div>
-
-      <div class="card">
-         <img class="skyline" id="tokyo-img" alt="Tokyo skyline">
-        <h2>Tokyo</h2>
-        <p id="tokyo" class="time"></p>
-        <span class="daynight"></span>
-      </div>
-    </div>
-
-    <!-- ONLY ONE DROPDOWN -->
+    <!-- ===== WORLD CLOCK GRID (DYNAMIC CARDS) ===== -->
+    <div class="grid"></div>
+    
+    <!-- ===== TIMEZONE SELECT DROPDOWN ===== -->
     <select id="locationSelect">
       <option value="America/New_York">New York</option>
       <option value="Europe/London">London</option>
@@ -58,39 +43,95 @@
       <option value="America/Los_Angeles">Los Angeles</option>
     </select>
 
-    <!-- TIME DISPLAY -->
+     <!-- ===== TIME DISPLAY SECTION (DETAIL VIEW) ===== -->
     <div id="timeDisplay" class="hidden">
+        <!-- Local vs Selected time info -->
       <p>Local Time: <span id="localTime"></span></p>
       <p>Selected City: <span id="selectedCity"></span></p>
       <p>Selected Time: <span id="selectedTime"></span></p>
       <p id="timeDiff"></p>
+      <p class="updated">Last updated: <span id="lastUpdated"></span></p>
        
       <br>
-      <div class="weather-block">
-        <h3>Weather</h3>
-  <p id="weather"></p>
-  <p id="temperature"></p>
-  <div class="weather-icon" id="weatherIcon"></div>
+
+       <!-- ===== CITY FACTS SECTION ===== -->
+      <div class="facts-block">
+      <h3>🌍 City Facts</h3>
+      <p id="cityFact"></p>
+      <button id="nextFactBtn">🔁 Next Fact</button>
+      </div>
+
+      <!-- ===== QUIZ SECTION ===== -->
+      <div class="quiz-block hidden">
+  <h3>🧠 City Trivia</h3>
+
+  <p id="quizQuestion">Click start to begin</p>
+
+<!-- Multiple choice options injected via JS -->
+  <div id="quizOptions"></div>
+
+  <button id="startQuizBtn">▶ Start Quiz</button>
+  <button id="nextQuizBtn" disabled>Next Question</button>
+
+  <p id="quizScore"></p>
 </div>
-      
-      <p class="updated">Last updated: <span id="lastUpdated"></span></p>
+
+<!-- ===== FLIGHT PLANNER SECTION ===== -->
+<div class="flight-block">
+  <h3>✈️ Flight Planner</h3>
+
+  <!-- Origin timezone selector -->
+  <label>From:</label>
+  <select id="fromZone"></select>
+
+   <!-- Destination timezone selector -->
+  <label>To:</label>
+  <select id="toZone"></select>
+
+    <!-- Departure input -->
+  <label>Departure Date & Time:</label>
+  <input type="datetime-local" id="departureTime"/>
+
+   <!-- Flight duration input -->
+  <label>Flight Duration (hours):</label>
+  <input type="number" id="flightHours" min="0" value="7"/>
+
+   <!-- Manual arrival toggle -->
+  <label>
+    <input type="checkbox" id="manualArrivalToggle">
+    Set arrival manually
+  </label>
+
+  <!-- Arrival input (enabled only if manual mode is on) -->
+  <input type="datetime-local" id="arrivalTime" disabled/>
+
+   <!-- Calculate button -->
+  <button id="calcFlight">Calculate</button>
+
+   <!-- Result output -->
+  <div id="flightResult" class="flight-result"></div>
+</div>
+
     </div>
 
-    <!-- EVENT COUNTDOWNS -->
+    <!-- ================= WORLD EVENTS COUNTDOWN ================= -->
 <div id="eventPanel" class="card event-card">
   <h2>🌍 World Events</h2>
 
   <div class="event-list">
+    <!-- New Year countdown -->
     <div class="event">
       <span class="event-name">New Year</span>
       <span class="event-time" id="newYearCountdown"></span>
     </div>
 
+     <!-- Christmas countdown -->
     <div class="event">
       <span class="event-name">Christmas</span>
       <span class="event-time" id="christmasCountdown"></span>
     </div>
 
+     <!-- Olympics countdown -->
     <div class="event">
       <span class="event-name">Olympics</span>
       <span class="event-time" id="olympicsCountdown"></span>
@@ -100,6 +141,7 @@
 
   </div>
 
+   <!-- ================= FOOTER ================= -->
   <footer>
     This project was coded by
     <a href="https://github.com/yvonnesarah" target="_blank">Yvonne Adedeji</a>
@@ -109,6 +151,7 @@
     <a href="https://ya-world-clock.netlify.app/" target="_blank">Netlify</a>.
   </footer>
 
+   <!-- ================= JAVASCRIPT ================= -->
   <script src="assets/js/script.js"></script>
 </body>
 </html>
