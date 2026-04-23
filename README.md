@@ -39,9 +39,8 @@ No installation is required to use the app. It is hosted online and can be acces
 
 ## 🔗 Live Demo & Repository
 Application can be viewed here: 
-* [Live](https://ya-world-clock.netlify.app/)
-
-* [Repository](https://github.com/yvonnesarah/world-clock)
+* 🌐 Live: https://ya-world-clock.netlify.app/
+* 💻 Repository: https://github.com/yvonnesarah/world-clock
 
 ## 🖼 Screenshot
 Before Design
