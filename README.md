@@ -109,21 +109,21 @@ These advanced features aim to bring professional-grade tools and deeper functio
 ## 🧠 Challenges & Learnings
 🚧 Challenges Faced
 
-1. Handling multiple time zones accurately across different cities while ensuring real-time synchronization
-2. Implementing continuous time updates without performance lag or excessive resource usage
-3. Achieving a fully responsive layout that works seamlessly across mobile, tablet, and desktop devices
-4. Managing theme switching (light/dark mode) without breaking UI consistency
-5. Designing the flight planner logic to correctly calculate time differences and arrival estimates
-6. Integrating multiple features (quiz, countdowns, city facts) while maintaining clean code structure
+1. Handling multiple time zones accurately across different cities while ensuring real-time synchronization.
+2. Implementing continuous time updates without performance lag or excessive resource usage.
+3. Achieving a fully responsive layout that works seamlessly across mobile, tablet, and desktop devices.
+4. Managing theme switching (light/dark mode) without breaking UI consistency.
+5. Designing the flight planner logic to correctly calculate time differences and arrival estimates.
+6. Integrating multiple features (quiz, countdowns, city facts) while maintaining clean code structure.
 
 📚 Key Learnings
 
-1. Improved understanding of JavaScript Date and Time APIs for real-world time calculations
-2. Learned how to manage state updates efficiently in a constantly updating UI
-3. Strengthened responsive design skills using CSS Flexbox and media queries
-4. Gained experience in structuring a multi-feature web application in a modular way
-5. Developed better problem-solving skills when dealing with time zone conversions and edge cases
-6. Improved ability to balance feature expansion with performance optimization
+1. Improved understanding of JavaScript Date and Time APIs for real-world time calculations.
+2. Learned how to manage state updates efficiently in a constantly updating UI.
+3. Strengthened responsive design skills using CSS Flexbox and media queries.
+4. Gained experience in structuring a multi-feature web application in a modular way.
+5. Developed better problem-solving skills when dealing with time zone conversions and edge cases.
+6. Improved ability to balance feature expansion with performance optimization.
 
 ## 👥 Credit
 Designed and developed by Yvonne Adedeji.
